@@ -2,6 +2,7 @@ import React, { useState, Suspense } from 'react';
 import { Search, Download, Box, Eye, Filter } from 'lucide-react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Stage, Box as ThreeBox } from '@react-three/drei';
+import { useCart } from '../context/CartContext';
 
 const ModelViewer = ({ color = '#3b82f6' }) => {
   return (
@@ -21,6 +22,7 @@ const ModelViewer = ({ color = '#3b82f6' }) => {
 const CADLibrary: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedPart, setSelectedPart] = useState<any>(null);
+  const { addToCart } = useCart();
 
   const parts = [
     { id: 1, name: '볼 베어링 6000', category: '베어링', size: '10x26x8', color: '#3b82f6' },
@@ -155,7 +157,17 @@ const CADLibrary: React.FC = () => {
                     <Download size={16} className="mr-2" /> STL 다운로드
                   </button>
                   <button
-                    onClick={() => window.open('https://kr.misumi-ec.com/', '_blank')}
+                    onClick={() => {
+                      addToCart({
+                        id: selectedPart.id,
+                        name: selectedPart.name,
+                        spec: selectedPart.size,
+                        qty: 1,
+                        price: 15000,
+                        supplier: '한국미스미',
+                      });
+                      alert('부품 리스트에 추가되었습니다.');
+                    }}
                     className="bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-bold flex items-center shadow-lg hover:bg-blue-700 transition-colors"
                   >
                     구매하기

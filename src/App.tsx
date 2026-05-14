@@ -6,10 +6,12 @@ import SelectionEngine from './pages/SelectionEngine';
 import CADLibrary from './pages/CADLibrary';
 import MaterialOptimizer from './pages/MaterialOptimizer';
 import CommerceConnector from './pages/CommerceConnector';
+import { CartProvider } from './context/CartContext';
 
 function App() {
   return (
-    <BrowserRouter>
+    <CartProvider>
+      <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
@@ -20,7 +22,8 @@ function App() {
           <Route path="commerce-connector" element={<CommerceConnector />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
+    </CartProvider>
   );
 }
 
