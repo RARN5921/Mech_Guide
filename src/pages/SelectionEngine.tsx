@@ -64,23 +64,30 @@ const SelectionEngine: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">
+                <label className="block text-sm font-medium text-slate-900 mb-1">
                   안전율 (Safety Factor)
                 </label>
+                <div className="flex gap-2 mb-2">
+                  <input
+                    type="number" step="0.1" value={inputs.safetyFactor}
+                    onChange={(e) => setInputs({...inputs, safetyFactor: parseFloat(e.target.value) || 0})}
+                    className="flex-1 p-2 bg-slate-50 border border-slate-200 rounded-lg text-sm"
+                  />
+                </div>
                 <select
                   value={inputs.safetyFactor}
                   onChange={(e) => setInputs({...inputs, safetyFactor: parseFloat(e.target.value)})}
-                  className="w-full p-2 bg-slate-50 border border-slate-200 rounded-lg text-sm"
+                  className="w-full p-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-500"
                 >
-                  <option value="1.2">1.2 (정하중)</option>
-                  <option value="2.0">2.0 (변동하중)</option>
-                  <option value="3.0">3.0 (충격하중)</option>
-                  <option value="5.0">5.0 (극한환경)</option>
+                  <option value="1.2">권장: 1.2 (정하중)</option>
+                  <option value="2.0">권장: 2.0 (변동하중)</option>
+                  <option value="3.0">권장: 3.0 (충격하중)</option>
+                  <option value="5.0">권장: 5.0 (극한환경)</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">
+                <label className="block text-sm font-medium text-slate-900 mb-1">
                   운동 범위 (mm)
                 </label>
                 <input
@@ -158,7 +165,6 @@ const SelectionEngine: React.FC = () => {
             </div>
 
             <div className="mt-6 flex justify-end space-x-3">
-              <button className="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-slate-900">PDF 보고서 다운로드</button>
               <button className="px-6 py-2 bg-slate-900 text-white rounded-lg text-sm font-bold hover:bg-slate-800 transition-colors">CAD 라이브러리에서 찾기</button>
             </div>
           </div>

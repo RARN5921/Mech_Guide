@@ -136,10 +136,6 @@ const VisualAdvisor: React.FC = () => {
                       {analysis.suggestion}
                     </p>
                   </div>
-
-                  <button className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold text-sm hover:bg-slate-800 transition-colors">
-                    상세 설계 최적화로 이동
-                  </button>
                 </div>
               )}
             </div>

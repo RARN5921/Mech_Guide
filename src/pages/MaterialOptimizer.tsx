@@ -90,9 +90,9 @@ const MaterialOptimizer: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">주요 하중 특성</label>
+                <label className="block text-sm font-medium text-slate-900 mb-2">주요 하중 특성</label>
                 <select
-                  className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-orange-500 text-slate-900"
                   value={conditions.loadType}
                   onChange={(e) => setConditions({...conditions, loadType: e.target.value})}
                 >
