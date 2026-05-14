@@ -106,7 +106,10 @@ const CADLibrary: React.FC = () => {
                   <button className="bg-white text-slate-900 px-4 py-2 rounded-xl text-sm font-bold flex items-center shadow-lg hover:bg-blue-50 transition-colors">
                     <Download size={16} className="mr-2" /> STEP 다운로드
                   </button>
-                  <button className="bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-bold flex items-center shadow-lg hover:bg-blue-700 transition-colors">
+                  <button
+                    onClick={() => window.open('https://kr.misumi-ec.com/', '_blank')}
+                    className="bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-bold flex items-center shadow-lg hover:bg-blue-700 transition-colors"
+                  >
                     구매하기
                   </button>
                 </div>
