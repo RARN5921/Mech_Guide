@@ -64,14 +64,14 @@ const SelectionEngine: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-900 mb-1">
+                <label className="block text-sm font-medium text-black mb-1">
                   안전율 (Safety Factor)
                 </label>
                 <div className="flex gap-2 mb-2">
                   <input
                     type="number" step="0.1" value={inputs.safetyFactor}
                     onChange={(e) => setInputs({...inputs, safetyFactor: parseFloat(e.target.value) || 0})}
-                    className="flex-1 p-2 bg-slate-50 border border-slate-200 rounded-lg text-sm"
+                    className="flex-1 p-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-black"
                   />
                 </div>
                 <select
@@ -87,13 +87,13 @@ const SelectionEngine: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-900 mb-1">
+                <label className="block text-sm font-medium text-black mb-1">
                   운동 범위 (mm)
                 </label>
                 <input
                   type="number" value={inputs.motionRange}
                   onChange={(e) => setInputs({...inputs, motionRange: parseInt(e.target.value)})}
-                  className="w-full p-2 bg-slate-50 border border-slate-200 rounded-lg text-sm"
+                  className="w-full p-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-black"
                 />
               </div>
 
