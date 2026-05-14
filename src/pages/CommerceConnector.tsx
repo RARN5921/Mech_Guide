@@ -1,14 +1,19 @@
-import React from 'react';
-import { ExternalLink, Package, ArrowRight, Truck, CreditCard } from 'lucide-react';
+import React, { useState } from 'react';
+import { ExternalLink, Package, ArrowRight, Truck, CreditCard, Search } from 'lucide-react';
 
 const CommerceConnector: React.FC = () => {
-  const cartItems = [
-    { id: 1, name: '볼 베어링 6000', spec: '10x26x8', qty: 4, price: 1200, supplier: '한국미스미' },
-    { id: 2, name: 'M8 육각 렌치 볼트', spec: 'M8 x 20', qty: 20, price: 150, supplier: '디바이스마트' },
-    { id: 3, name: '플랜지 커플링', spec: 'D20-L30', qty: 2, price: 15000, supplier: '한국미스미' },
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const allParts = [
+    { id: 1, name: '볼 베어링 6000', spec: '10x26x8', price: 1200, supplier: '한국미스미' },
+    { id: 2, name: 'M8 육각 렌치 볼트', spec: 'M8 x 20', price: 150, supplier: '디바이스마트' },
+    { id: 3, name: '플랜지 커플링', spec: 'D20-L30', price: 15000, supplier: '한국미스미' },
+    { id: 4, name: '헬리컬 기어 1.5M', spec: 'Z20-A20', price: 25000, supplier: '메카솔루션' },
+    { id: 5, name: '리니어 부쉬', spec: 'LM12UU', price: 4500, supplier: '아이마켓' },
+    { id: 6, name: '타이밍 풀리 GT2', spec: 'W6-Z20', price: 800, supplier: '디바이스마트' },
   ];
 
-  const total = cartItems.reduce((acc, item) => acc + (item.price * item.qty), 0);
+  const filteredParts = allParts.filter(p => p.name.includes(searchTerm) || p.supplier.includes(searchTerm));
 
   return (
     <div className="space-y-6">
@@ -19,16 +24,25 @@ const CommerceConnector: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-6">
-          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-            <div className="p-6 border-b border-slate-100 flex items-center justify-between">
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col h-full">
+            <div className="p-6 border-b border-slate-100 flex items-center justify-between gap-4 flex-wrap">
               <h3 className="font-bold text-slate-800 flex items-center">
-                <Package className="mr-2 text-blue-600" size={18} /> 확정 부품 리스트
+                <Package className="mr-2 text-blue-600" size={18} /> 부품 가격 및 구매처 검색
               </h3>
-              <span className="text-sm text-slate-500">{cartItems.length}개 품목</span>
+              <div className="relative flex-1 min-w-[200px]">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                <input
+                  type="text"
+                  placeholder="부품명 또는 구매처 검색..."
+                  className="pl-10 pr-4 py-2 border border-slate-200 rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-slate-900"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+              </div>
             </div>
 
-            <div className="divide-y divide-slate-100">
-              {cartItems.map(item => (
+            <div className="divide-y divide-slate-100 flex-1 overflow-y-auto max-h-[600px]">
+              {filteredParts.length > 0 ? filteredParts.map(item => (
                 <div key={item.id} className="p-6 flex items-center justify-between hover:bg-slate-50 transition-colors">
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-slate-400">
@@ -36,38 +50,21 @@ const CommerceConnector: React.FC = () => {
                     </div>
                     <div>
                       <p className="font-bold text-slate-900">{item.name}</p>
-                      <p className="text-xs text-slate-500">{item.spec} | {item.supplier}</p>
+                      <p className="text-xs text-slate-500">{item.spec} | <span className="font-medium text-blue-600">{item.supplier}</span></p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-bold text-slate-900">₩{(item.price * item.qty).toLocaleString()}</p>
-                    <p className="text-xs text-slate-400">수량: {item.qty}</p>
+                    <p className="text-sm font-bold text-slate-900">₩{item.price.toLocaleString()}</p>
+                    <button className="mt-1 text-xs px-3 py-1 bg-blue-50 text-blue-600 rounded-md hover:bg-blue-100 font-medium transition-colors">
+                      해당 구매처로 이동
+                    </button>
                   </div>
                 </div>
-              ))}
-            </div>
-
-            <div className="p-6 bg-slate-50 flex items-center justify-between">
-              <div>
-                <p className="text-xs text-slate-500">예상 합계 (VAT 별도)</p>
-                <p className="text-2xl font-black text-slate-900">₩{total.toLocaleString()}</p>
-              </div>
-              <button className="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-slate-800 transition-colors flex items-center">
-                전체 견적 요청 <ArrowRight className="ml-2" size={18} />
-              </button>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-              <Truck className="text-blue-500 mb-3" size={24} />
-              <h4 className="font-bold text-slate-800 mb-1">통합 배송 서비스</h4>
-              <p className="text-sm text-slate-500">여러 판매처의 제품을 한 번에 묶음 배송하여 배송비를 절감하세요.</p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-              <CreditCard className="text-emerald-500 mb-3" size={24} />
-              <h4 className="font-bold text-slate-800 mb-1">법인 결제 지원</h4>
-              <p className="text-sm text-slate-500">전자세금계산서 발행 및 법인 카드 결제를 간편하게 진행할 수 있습니다.</p>
+              )) : (
+                <div className="p-12 text-center text-slate-500">
+                  <p>검색 결과가 없습니다.</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
