@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Settings2, Calculator, Save, RefreshCw, Info } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const SelectionEngine: React.FC = () => {
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     load: 50,
     safetyFactor: 2.0,
@@ -49,17 +51,17 @@ const SelectionEngine: React.FC = () => {
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">
-                  예상 하중 (kgf)
+                  예상 하중 (N)
                 </label>
                 <input
-                  type="range" min="1" max="500" value={inputs.load}
+                  type="range" min="10" max="5000" step="10" value={inputs.load}
                   onChange={(e) => setInputs({...inputs, load: parseInt(e.target.value)})}
                   className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <div className="flex justify-between text-xs text-slate-500 mt-1">
-                  <span>1kgf</span>
-                  <span className="font-bold text-blue-600">{inputs.load} kgf</span>
-                  <span>500kgf</span>
+                  <span>10 N</span>
+                  <span className="font-bold text-blue-600">{inputs.load} N</span>
+                  <span>5000 N</span>
                 </div>
               </div>
 
@@ -158,14 +160,14 @@ const SelectionEngine: React.FC = () => {
                 <h4 className="font-bold mb-2">엔지니어링 코멘트</h4>
                 <p className="text-sm text-blue-100 leading-relaxed">
                   선택하신 안전율 {inputs.safetyFactor}는 {inputs.safetyFactor >= 3 ? '충분히 보수적인' : '경제적인'} 설계 범위에 해당합니다.
-                  {inputs.load > 100 ? ' 하중이 100kgf 이상이므로 체결부 강성 확보를 위해 고장력 볼트 사용을 권장합니다.' : ' 일반적인 설계 사양으로 표준 부품 적용이 용이합니다.'}
+                  {inputs.load > 1000 ? ' 하중이 1000N 이상이므로 체결부 강성 확보를 위해 고장력 볼트 사용을 권장합니다.' : ' 일반적인 설계 사양으로 표준 부품 적용이 용이합니다.'}
                 </p>
               </div>
               <Settings2 className="absolute -right-4 -bottom-4 text-blue-800 opacity-30" size={120} />
             </div>
 
             <div className="mt-6 flex justify-end space-x-3">
-              <button className="px-6 py-2 bg-slate-900 text-white rounded-lg text-sm font-bold hover:bg-slate-800 transition-colors">CAD 라이브러리에서 찾기</button>
+              <button onClick={() => navigate('/cad-library')} className="px-6 py-2 bg-slate-900 text-white rounded-lg text-sm font-bold hover:bg-slate-800 transition-colors">CAD 라이브러리에서 찾기</button>
             </div>
           </div>
         </div>

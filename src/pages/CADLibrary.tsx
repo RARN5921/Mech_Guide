@@ -45,7 +45,7 @@ const CADLibrary: React.FC = () => {
           <input
             type="text"
             placeholder="부품명 또는 카테고리 검색..."
-            className="pl-10 pr-4 py-2 border border-slate-200 rounded-xl w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+            className="pl-10 pr-4 py-2 border border-slate-200 rounded-xl w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-slate-900"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -105,6 +105,9 @@ const CADLibrary: React.FC = () => {
                 <div className="flex space-x-2">
                   <button className="bg-white text-slate-900 px-4 py-2 rounded-xl text-sm font-bold flex items-center shadow-lg hover:bg-blue-50 transition-colors">
                     <Download size={16} className="mr-2" /> STEP 다운로드
+                  </button>
+                  <button className="bg-white text-slate-900 px-4 py-2 rounded-xl text-sm font-bold flex items-center shadow-lg hover:bg-blue-50 transition-colors">
+                    <Download size={16} className="mr-2" /> STL 다운로드
                   </button>
                   <button
                     onClick={() => window.open('https://kr.misumi-ec.com/', '_blank')}
