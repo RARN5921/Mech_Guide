@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { ExternalLink, Package, ArrowRight, Search } from 'lucide-react';
+import { ExternalLink, Package, ArrowRight, Search, Trash2 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
 const CommerceConnector: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const { cartItems, addToCart } = useCart();
+  const { cartItems, addToCart, removeFromCart } = useCart();
 
   const allParts = [
     { id: 1, name: '볼 베어링 6000', spec: '10x26x8', qty: 4, price: 1200, supplier: '한국미스미' },
@@ -96,9 +96,18 @@ const CommerceConnector: React.FC = () => {
                       <p className="text-xs text-slate-500">{item.spec} | {item.supplier}</p>
                     </div>
                   </div>
-                  <div className="text-right">
-                    <p className="text-sm font-bold text-slate-900">₩{(item.price * item.qty).toLocaleString()}</p>
-                    <p className="text-xs text-slate-400">수량: {item.qty}</p>
+                  <div className="flex items-center space-x-4">
+                    <div className="text-right">
+                      <p className="text-sm font-bold text-slate-900">₩{(item.price * item.qty).toLocaleString()}</p>
+                      <p className="text-xs text-slate-400">수량: {item.qty}</p>
+                    </div>
+                    <button
+                      onClick={() => removeFromCart(item.id)}
+                      className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                      aria-label="삭제"
+                    >
+                      <Trash2 size={18} />
+                    </button>
                   </div>
                 </div>
               ))}
