@@ -44,9 +44,6 @@ const Dashboard: React.FC = () => {
             <Link to="/visual-advisor" className="bg-white text-blue-700 px-6 py-3 rounded-xl font-bold hover:bg-blue-50 transition-colors flex items-center">
               시작하기 <ArrowRight className="ml-2" size={18} />
             </Link>
-            <button className="bg-blue-600/30 backdrop-blur-sm border border-blue-400/30 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-600/50 transition-colors">
-              매뉴얼 보기
-            </button>
           </div>
         </div>
         <div className="absolute right-0 bottom-0 opacity-10 pointer-events-none">
