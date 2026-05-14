@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { ExternalLink, Package, ArrowRight, Search, Trash2 } from 'lucide-react';
+import { ExternalLink, Package, ArrowRight, Search, Trash2, Plus, Minus } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
 const CommerceConnector: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const { cartItems, addToCart, removeFromCart } = useCart();
+  const { cartItems, addToCart, removeFromCart, updateQuantity } = useCart();
 
   const allParts = [
     { id: 1, name: '볼 베어링 6000', spec: '10x26x8', qty: 4, price: 1200, supplier: '한국미스미' },
@@ -97,9 +97,26 @@ const CommerceConnector: React.FC = () => {
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <div className="text-right">
+                    <div className="flex items-center space-x-2 mr-4 bg-slate-50 border border-slate-200 rounded-lg p-1">
+                      <button
+                        onClick={() => updateQuantity(item.id, item.qty - 1)}
+                        className="p-1 text-slate-400 hover:text-slate-700 hover:bg-slate-200 rounded transition-colors"
+                        aria-label="감소"
+                        disabled={item.qty <= 1}
+                      >
+                        <Minus size={14} />
+                      </button>
+                      <span className="text-sm font-medium w-6 text-center text-slate-900">{item.qty}</span>
+                      <button
+                        onClick={() => updateQuantity(item.id, item.qty + 1)}
+                        className="p-1 text-slate-400 hover:text-slate-700 hover:bg-slate-200 rounded transition-colors"
+                        aria-label="증가"
+                      >
+                        <Plus size={14} />
+                      </button>
+                    </div>
+                    <div className="text-right w-24">
                       <p className="text-sm font-bold text-slate-900">₩{(item.price * item.qty).toLocaleString()}</p>
-                      <p className="text-xs text-slate-400">수량: {item.qty}</p>
                     </div>
                     <button
                       onClick={() => removeFromCart(item.id)}
