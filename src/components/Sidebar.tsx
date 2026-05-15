@@ -14,8 +14,8 @@ const Sidebar: React.FC = () => {
     { to: '/', icon: <LayoutDashboard size={20} />, label: '대시보드' },
     { to: '/visual-advisor', icon: <Eye size={20} />, label: '설계 어드바이저' },
     { to: '/selection-engine', icon: <Settings2 size={20} />, label: '규격 추천 엔진' },
-    { to: '/cad-library', icon: <Library size={20} />, label: 'CAD 라이브러리' },
     { to: '/material-optimizer', icon: <Thermometer size={20} />, label: '재질 최적화' },
+    { to: '/cad-library', icon: <Library size={20} />, label: 'CAD 라이브러리' },
     { to: '/commerce-connector', icon: <ShoppingCart size={20} />, label: '커머스 커넥터' },
   ];
 
