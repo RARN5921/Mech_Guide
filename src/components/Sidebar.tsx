@@ -44,7 +44,7 @@ const Sidebar: React.FC = () => {
         ))}
       </nav>
       <div className="p-4 border-t border-slate-800 text-[10px] text-slate-500 text-center">
-        © 2024 MECH-GUIDE. All rights reserved.
+        © 2026 MECH-GUIDE. All rights reserved.
       </div>
     </div>
   );
