@@ -143,6 +143,16 @@ const CADLibrary: React.FC = () => {
                     <span className="text-[10px] font-bold px-2 py-0.5 bg-slate-100 text-slate-600 rounded-md">CAD AVAILABLE</span>
                     <span className="text-[10px] font-bold px-2 py-0.5 bg-green-100 text-green-700 rounded-md">IN STOCK</span>
                   </div>
+                  <div className="mt-3 pt-3 border-t border-slate-100/50">
+                    <div className="flex justify-between items-center text-sm gap-4">
+                      <span className="text-slate-500">카테고리</span>
+                      <span className="font-bold text-slate-800">{selectedPart.category}</span>
+                    </div>
+                    <div className="flex justify-between items-center text-sm mt-1 gap-4">
+                      <span className="text-slate-500">규격</span>
+                      <span className="font-bold text-slate-800">{selectedPart.size}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="absolute bottom-6 right-6 left-6 z-10 flex justify-between items-end">
