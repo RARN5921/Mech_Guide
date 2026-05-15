@@ -78,7 +78,10 @@ const CADLibrary: React.FC = () => {
     { id: 51, name: '라운드 벨트', category: '벨트/풀리', size: '표준', color: '#8b5cf6' },
   ];
 
-  const filteredParts = parts.filter(p => p.name.includes(searchTerm) || p.category.includes(searchTerm));
+  const filteredParts = parts.filter(p =>
+    p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    p.category.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="space-y-6 h-[calc(100vh-8rem)] flex flex-col">
